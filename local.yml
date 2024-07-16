@@ -4,26 +4,45 @@
     - name: Update cache
       apt:
         update_cache: true
+      tags:
+      - zsh
+      - nodejs
   tasks: 
   - name: Install zsh
     apt: name=zsh
+    tags: 
+    - zsh
   - name: Change shell
     shell: chsh -s `which zsh`
+    tags:
+    - zsh
   - name: Install ohmyzsh (hehehe)
     shell: curl -L https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh | sh
+    tags:
+    - zsh
   - name: Install the zsh plugins for auto suggestions
     shell: git clone https://github.com/zsh-users/zsh-autosuggestions.git ~/.oh-my-zsh/plugins/zsh-autosuggestions
+    tags:
+    - zsh
   - name: Update our zshrc
     shell: sed -i -e 's/plugins=(git)/plugins=(git zsh-autosuggestions)/g' ~/.zshrc
+    tags:
+    - zsh
   - name: Install nvm
     shell: >
      curl https://raw.githubusercontent.com/creationix/nvm/v0.7.0/install.sh | sh
      creates=/home/{{ ansible_user_id }}/.nvm/nvm.sh
+    tags:
+    - nodejs
   - name: Install node latest version
     shell: >
       /bin/bash -c "source ~/.nvm/nvm.sh && nvm install node"
       creates=/home/{{ ansible_user_id }}/.nvm/alias
+    tags:
+    - nodejs
   - name: Install node version 20.10
     shell: >
      /bin/bash -c "source ~/.nvm/nvm.sh && nvm install 20.10"
      creates=/home/{{ ansible_user_id }}/.nvm/alias
+    tags:
+    - nodejs
