@@ -7,6 +7,7 @@
       tags:
       - zsh
       - nodejs
+      - tmux
   tasks: 
   - name: Install zsh
     apt: name=zsh
@@ -28,6 +29,10 @@
     shell: sed -i -e 's/plugins=(git)/plugins=(git zsh-autosuggestions)/g' ~/.zshrc
     tags:
     - zsh
+  - name: Install tmux
+    shell: apt install tmux
+    tags:
+    - tmux
   - name: Install nvm
     shell: >
      curl https://raw.githubusercontent.com/creationix/nvm/v0.7.0/install.sh | sh
