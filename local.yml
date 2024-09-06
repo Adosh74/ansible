@@ -30,7 +30,7 @@
     tags:
     - zsh
   - name: Install tmux
-    shell: apt install tmux
+    apt:  name=tmux
     tags:
     - tmux
   - name: Install nvm
